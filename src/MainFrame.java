@@ -10,10 +10,9 @@ import java.util.ArrayList;
 
 public class MainFrame extends JFrame{
     private JTextField tfCariBarang;
-    private JTextField tfProduk;
     private JButton submitBtn;
     private JPanel Main;
-    private JTextField tfHarga;
+    private JTextArea textResult;
     private JTextField tfStok;
 
     public MainFrame(){
@@ -78,9 +77,10 @@ public class MainFrame extends JFrame{
 
 //                          Jika si stok lebih besar dari 0 maka perintah akan di eksekusi
                           if (stok > 0) {
-                              myframe.tfProduk.setText(dataList.get(index).getI_name());
-                              myframe.tfHarga.setText("Rp. " + dataList.get(index).getI_sell());
-                              myframe.tfStok.setText(dataList.get(index).getI_qty());
+                              myframe.textResult.append("\nProduk : " + dataList.get(index).getI_name() +
+                                                        "\nHarga : " + dataList.get(index).getI_sell() +
+                                                         "\nStok : " + dataList.get(index).getI_qty());
+
 
                           }
                       }
