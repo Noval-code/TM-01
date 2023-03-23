@@ -21,60 +21,43 @@ public class connect {
 
             assert response != null;
             JSONArray responsedJSON = new JSONArray(response);
-            ArrayList<FarmasiData> models = new ArrayList<>();
+            ArrayList<FarmasiData> dataList = new ArrayList<>();
 
             for (int i = 0; i < responsedJSON.length(); i++){
-                FarmasiData farData = new FarmasiData();
+                FarmasiData Data = new FarmasiData();
 
                 JSONObject myJSONObject = responsedJSON.getJSONObject(i);
 
-                farData.setI_qty(myJSONObject.getString("i_qty"));
+                Data.setI_name(myJSONObject.getString("i_name"));
+                Data.setI_sell(myJSONObject.getString("i_sell"));
+                Data.setI_qty(myJSONObject.getString("i_qty"));
 
-                farData.setI_name(myJSONObject.getString("i_name"));
-
-                farData.setI_cogs(myJSONObject.getString("i_cogs"));
-
-                farData.setI_kdsell(myJSONObject.getString("i_kdsell"));
-
-                farData.setI_sell(myJSONObject.getString("i_sell"));
-
-
-
-
-
-
-                models.add(farData);
+                dataList.add(Data);
             }
-
-
 
             System.out.println("Response are : ");
-            for (int index = 0; index<models.size();index++){
+            for (int index = 0; index<dataList.size();index++){
 
-                String stok = models.get(index).getI_qty();
+                Long stok = Long.parseLong(dataList.get(index).getI_qty());
 
-                int harga = Integer.parseInt(models.get(index).getI_sell());
+                int harga = Integer.parseInt(dataList.get(index).getI_sell());
 
-                String name = String.valueOf(models.get(index).getI_name().charAt(0));
-
-                if (stok != null){
+                String name = String.valueOf(dataList.get(index).getI_name().charAt(0));
 
                     if(name.contains("S")&& harga < 7000){
-                        System.out.println("NAME : " + models.get(index).getI_name());
-                        System.out.println("HARGA : " + models.get(index).getI_sell());
-                        System.out.println("Stok Tersedia : " + models.get(index).getI_qty());
+
+                        if (stok > 0) {
+                            System.out.println("NAME : " + dataList.get(index).getI_name());
+                            System.out.println("HARGA : " + dataList.get(index).getI_sell());
+                            System.out.println("Stok Tersedia : " + dataList.get(index).getI_qty());
+
+                        }
+
                     }
-
-                }
-
-
-
 
             }
 
-
         }
-
 
     }
 
